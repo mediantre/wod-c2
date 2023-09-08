@@ -147,11 +147,20 @@ if __name__ == '__main__':
     df = pd.DataFrame()
 
     for wod in wod_date_range:
-        # Add the wod to the dataframe
-        df = pd.concat([df, convert_wod_to_df(wod)], axis=0, ignore_index=True, sort=False)
 
-        print(df)
+        wod_df = convert_wod_to_df(wod)
+
+        print(wod_df)
+
+        # Add the wod to the dataframe
+        df = pd.concat([df, wod_df], axis=0, ignore_index=True, sort=False)
+
+        # Replace NaN values with None
+        df = df.where(pd.notna(df), None)
+
+        
+
+    print(df)
 
     # Export the dataframe to a csv
     df.to_csv('wod.csv', index=False)
-    
