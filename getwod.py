@@ -152,6 +152,8 @@ if __name__ == '__main__':
 
         print(wod_df)
 
+        
+
         # Add the wod to the dataframe
         df = pd.concat([df, wod_df], axis=0, ignore_index=True, sort=False)
 
